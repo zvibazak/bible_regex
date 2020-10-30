@@ -1,40 +1,75 @@
 <html>
+
 <head>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
-
-<script>
-
-    $(function() {
-
-
-   var people = [];
-
-   $.getJSON('https://raw.githubusercontent.com/Sefaria/Sefaria-Export/master/json/Tanakh/Torah/Genesis/Hebrew/Tanach%20with%20Text%20Only.json', function(data) {
-       console.log(data);
-   });
-
-});
-</script>
+    <title>bible regex</title>
 </head>
 
 <body>
+    <form id="form" dir="rtl">
+        הכניסו את מספר האותיות הרצוי
+        </br>
+        לדוגמא 3,6 - "בראשית ברא"
+        </br> </br> </br>
+        <input type="text" dir="ltr" id="user_input" />
+        <input value="חפש!" type="submit" />
+    </form>
+    </br> </br>
+    <div id="res" dir="rtl"></div>
 
-<div class="wrapper">
-<div class="profile">
-   <table id= "userdata" border="2">
-  <thead>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email Address</th>
-            <th>City</th>
-        </thead>
-      <tbody>
+    <script>
+        function init() {
+            var form = document.getElementById("form");
 
-       </tbody>
-   </table>
+            form.onsubmit = showRes;
+            function handleForm(event) {
+                event.preventDefault();
+            }
+            form.addEventListener("submit", handleForm);
 
-</div>
-</div>
+            url = "https://raw.githubusercontent.com/Sefaria/Sefaria-Export/master/json/Tanakh/Torah/Genesis/Hebrew/Tanach%20with%20Text%20Only.json";
+            fetch(url)
+                .then(response => response.json())
+                .then(json => all_json = json);
+        }
+        window.onload = init;
+        function showRes(params) {
+            user_input = document.getElementById(
+                "user_input"
+            ).value;
+            if (!user_input) {
+                document.getElementById("res").innerHTML = "<b>אנא הכניסו מספר אותיות רצוי</b></br>";
+                return;
+            }
+            document.getElementById("res").innerHTML = "<b>תוצאות:</b></br>";
 
+            user_input_num = user_input.split(',').map(Number);
+            regex_from_user = '( |^)';
+            len = 0;
+            user_input_num.forEach(element => {
+                len += element + 1
+                regex_from_user += "\\S".repeat(element) + " ";
+            });
+            regex_from_user = regex_from_user.trim(" ");
+            regex_from_user += '( |$)';
+
+            var obj = all_json;
+            sefer = obj["text"];
+            (sefer).forEach(perek => {
+                perek.forEach(org_pasuk => {
+                    pasuk = org_pasuk.replaceAll("־", " ");
+                    var n = pasuk.search(new RegExp(regex_from_user));
+                    if (n >= 0) {
+                        var redText = pasuk.substring(n, n + len);
+                        new_text = pasuk.substring(0, n) + "<a style='color:red;'>" + redText + "</a>" + pasuk.substring(n + len);
+                        p = sefer.indexOf(perek) + 1;
+                        pp = perek.indexOf(org_pasuk) + 1;
+                        location1 = " (פרק " + (p) + " פסוק " + (pp) + ")";
+                        document.getElementById("res").innerHTML += "* \"" + new_text + "\"" + location1 + "</br>";
+                    }
+                });
+            });
+        }
+    </script>
 </body>
+
 </html>
