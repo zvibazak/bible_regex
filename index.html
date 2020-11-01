@@ -4,7 +4,7 @@
     <title>bible regex</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
     <style>
-    /*.title {
+    .title {
         text-align: center;
     }
     body {
@@ -12,7 +12,7 @@
         font-size: 18px;
         width: 80%;
         margin: 0 auto;
-    }*/
+    }
 </style>
 </head>
 
@@ -20,7 +20,7 @@
     <header>
         <h1 class="title">חיפוש בתנ"ך</h1>
     </header>
-    <form id="form" dir="rtl">
+    <form id="myform" dir="rtl">
         הכניסו את מספר האותיות הרצוי
         </br>
         לדוגמא 3,6 - "בראשית ברא"
@@ -33,7 +33,7 @@
 
     <script>
         function init() {
-            var form = document.getElementById("form");
+            var form = document.getElementById("myform");
 
             form.onsubmit = showRes;
             function handleForm(event) {
