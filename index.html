@@ -40,6 +40,13 @@
     <ul><div id="res" dir="rtl" style="text-align: right"></div></ul>
 
     <script>
+        document.getElementById('myform')
+      .addEventListener('keyup', function(event) {
+        if (event.code === 'Enter') {
+          event.preventDefault();
+          document.querySelector('form').submit();
+        }
+      });
         function init() {
             var form = document.getElementById("myform");
 
