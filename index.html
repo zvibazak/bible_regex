@@ -37,7 +37,6 @@
         <input class="u-full-width" type="text" dir="ltr" id="user_input" />
         <input value="חפש!" type="submit">
     </form>
-    </br> </br>
     <ul><div id="res" dir="rtl" style="text-align: right"></div></ul>
 
     <script>
@@ -64,7 +63,7 @@
                 document.getElementById("res").innerHTML = "<b>אנא הכניסו מספר אותיות רצוי</b></br>";
                 return;
             }
-            document.getElementById("res").innerHTML = "<h2>תוצאות:</h2></br>";
+            document.getElementById("res").innerHTML = "<h2>תוצאות:</h2>";
 
             user_input_num = user_input.split(',').map(Number);
             regex_from_user = '( |^)';
