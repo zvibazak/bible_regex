@@ -78,6 +78,7 @@
 
             var obj = all_json;
             sefer = obj["text"];
+            document.getElementById("res").innerHTML += "<ul>";
             (sefer).forEach(perek => {
                 perek.forEach(org_pasuk => {
                     pasuk = org_pasuk.replaceAll("־", " ");
@@ -88,10 +89,11 @@
                         p = sefer.indexOf(perek) + 1;
                         pp = perek.indexOf(org_pasuk) + 1;
                         location1 = " (פרק " + (p) + " פסוק " + (pp) + ")";
-                        document.getElementById("res").innerHTML += "* \"" + new_text + "\"" + location1 + "</br>";
+                        document.getElementById("res").innerHTML += "<li>\"" + new_text + "\"" + location1 + "</li>";
                     }
                 });
             });
+            document.getElementById("res").innerHTML += "</ul>";
         }
     </script>
 </body>
