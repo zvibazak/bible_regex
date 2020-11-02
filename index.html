@@ -38,7 +38,7 @@
         <input value="חפש!" type="submit">
     </form>
     </br> </br>
-    <div id="res" dir="rtl" style="text-align: right"></div>
+    <ul><div id="res" dir="rtl" style="text-align: right"></div></ul>
 
     <script>
         function init() {
@@ -78,7 +78,6 @@
 
             var obj = all_json;
             sefer = obj["text"];
-            document.getElementById("res").innerHTML += "<ul>";
             (sefer).forEach(perek => {
                 perek.forEach(org_pasuk => {
                     pasuk = org_pasuk.replaceAll("־", " ");
@@ -92,7 +91,6 @@
                         document.getElementById("res").innerHTML += "<li>\"" + new_text + "\"" + location1 + "</li>";
                     }
                 });
-            document.getElementById("res").innerHTML += "</ul>";
             });            
         }
     </script>
