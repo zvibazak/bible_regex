@@ -61,15 +61,17 @@
                 event.preventDefault();
             }
             form.addEventListener("submit", handleForm);
+
+        }
+        window.onload = init;
+        function showRes(params) {
             selected_book = document.getElementById("book").value;
 
             url = "https://raw.githubusercontent.com/Sefaria/Sefaria-Export/master/json/Tanakh/Torah/"+selected_book+"/Hebrew/Tanach%20with%20Text%20Only.json";
             fetch(url)
                 .then(response => response.json())
                 .then(json => all_json = json);
-        }
-        window.onload = init;
-        function showRes(params) {
+            
             user_input = document.getElementById(
                 "user_input"
             ).value;
