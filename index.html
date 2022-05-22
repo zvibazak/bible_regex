@@ -107,7 +107,7 @@
                         new_text = pasuk.substring(0, n) + "<a style='color:red;'>" + redText + "</a>" + pasuk.substring(n + len);
                         p = sefer.indexOf(perek) + 1;
                         pp = perek.indexOf(org_pasuk) + 1;
-                        location1 = " " + bookname + " (פרק " + (p) + " פסוק " + (pp) + ")";
+                        location1 = "( " + bookname + " פרק " + (p) + " פסוק " + (pp) + ")";
                         document.getElementById("res").innerHTML += "<li>\"" + new_text + "\"" + location1 + "</li>";
                     }
                 });
