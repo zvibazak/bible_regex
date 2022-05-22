@@ -70,10 +70,10 @@
             url = "https://raw.githubusercontent.com/Sefaria/Sefaria-Export/master/json/Tanakh/Torah/"+selected_book+"/Hebrew/Tanach%20with%20Text%20Only.json";
             fetch(url)
                 .then(response => response.json())
-                .then(json => all_json = json)
-                .then(this.showRes1);
+                .then(json => showRes1(all_json = json))
+                
         }
-        function showRes1() {    
+        function showRes1(all_json) {    
             user_input = document.getElementById(
                 "user_input"
             ).value;
