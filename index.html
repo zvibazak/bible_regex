@@ -92,6 +92,9 @@
             });
             regex_from_user = regex_from_user.trim(" ");
             regex_from_user += '( |$)';
+            
+            var sel = document.getElementById("book");
+            var bookname = sel.options[sel.selectedIndex].text;
 
             var obj = all_json;
             sefer = obj["text"];
@@ -104,7 +107,7 @@
                         new_text = pasuk.substring(0, n) + "<a style='color:red;'>" + redText + "</a>" + pasuk.substring(n + len);
                         p = sefer.indexOf(perek) + 1;
                         pp = perek.indexOf(org_pasuk) + 1;
-                        location1 = " (פרק " + (p) + " פסוק " + (pp) + ")";
+                        location1 = " " + bookname + " (פרק " + (p) + " פסוק " + (pp) + ")";
                         document.getElementById("res").innerHTML += "<li>\"" + new_text + "\"" + location1 + "</li>";
                     }
                 });
