@@ -33,6 +33,18 @@
         הכניסו את מספר האותיות הרצוי
         </br>
         לדוגמא 3,6 - "בראשית ברא"
+        </br> </br>
+        <label for="book">בחר חומש</label>
+
+        <select name="book" id="book">
+          <option value="Genesis" selected="selected">בראשית</option>
+          <option value="Exodus">שמות</option>          
+          <option value="Leviticus">ויקרא</option>
+          <option value="Numbers">במדבר</option>
+          <option value="Deuteronomy">דברים</option>
+        
+        </select>
+    
         </br> </br> </br>
         <input class="u-full-width" type="text" dir="ltr" id="user_input" />
         <input value="חפש!" type="submit">
@@ -49,8 +61,9 @@
                 event.preventDefault();
             }
             form.addEventListener("submit", handleForm);
+            selected_book = document.getElementById("book").value;
 
-            url = "https://raw.githubusercontent.com/Sefaria/Sefaria-Export/master/json/Tanakh/Torah/Genesis/Hebrew/Tanach%20with%20Text%20Only.json";
+            url = "https://raw.githubusercontent.com/Sefaria/Sefaria-Export/master/json/Tanakh/Torah/"+selected_book+"/Hebrew/Tanach%20with%20Text%20Only.json";
             fetch(url)
                 .then(response => response.json())
                 .then(json => all_json = json);
